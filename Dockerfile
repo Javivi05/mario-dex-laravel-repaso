@@ -18,6 +18,8 @@ RUN cp .env.example .env
 
 RUN php artisan key:generate
 
+RUN php artisan config:clear
+
 RUN touch /var/www/html/database/database.sqlite && php artisan migrate --force
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
