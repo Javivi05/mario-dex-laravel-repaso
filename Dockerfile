@@ -14,7 +14,12 @@ COPY . .
 
 RUN composer install --optimize-autoloader --no-dev
 
+RUN cp .env.example .env
+
+RUN php artisan key:generate
+
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
